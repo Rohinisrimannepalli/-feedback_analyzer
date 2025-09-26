@@ -1,17 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import UploadForm from './components/UploadForm';
+import Dashboard from './components/Dashboard';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeView, setActiveView] = useState('upload'); // 'upload' or 'dashboard'
 
   return (
-    <>
-      Changed now
-        
-    </>
-  )
+    <div className="App">
+      <header>
+        <h1>AI-Powered Feedback Platform</h1>
+        <nav>
+          <button onClick={() => setActiveView('upload')}>Upload Feedback</button>
+          <button onClick={() => setActiveView('dashboard')}>View Dashboard</button>
+        </nav>
+      </header>
+      <main>
+        {activeView === 'upload' ? <UploadForm /> : <Dashboard />}
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
